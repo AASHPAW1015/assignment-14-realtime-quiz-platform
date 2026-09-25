@@ -12,6 +12,19 @@ pushes a sorted leaderboard after every round. The host screen shows the
 question, live answer count and rankings; the player screen is a
 mobile-friendly 4-colour answer pad.
 
+
+## Live demo
+
+https://assignment-14-realtime-quiz-platform-7js5.onrender.com
+
+Open `/host.html` in one tab to create a quiz and get a PIN, then `/player.html`
+in other tabs (or on phones) to join with it. The app runs as one Render web
+service on the free tier (which supports WebSockets): the first visit after a
+period of inactivity can take up to a minute, and game state lives in memory,
+so it resets whenever the server restarts. Deployed with root directory
+`Ashutosh_Pawar_150096725130`, build `npm install`, start `npm start`; Render
+provides `PORT`.
+
 ## Tech stack
 
 - Node.js, Express 5
