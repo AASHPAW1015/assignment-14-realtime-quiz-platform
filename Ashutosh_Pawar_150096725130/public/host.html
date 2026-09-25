@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Quiz Host</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body data-page="host">
+    <header>
+      <h1>Quiz Host</h1>
+      <span id="status" class="status offline">connecting...</span>
+    </header>
+
+    <main>
+      <!-- 1. create -->
+      <section id="create-view" class="card narrow">
+        <h2>Create a quiz</h2>
+        <form id="create-form" class="stack">
+          <label for="host-name">Host name</label>
+          <input id="host-name" maxlength="30" value="Professor X" required />
+          <label for="category">Category</label>
+          <select id="category"></select>
+          <button class="btn blue" type="submit">CREATE QUIZ</button>
+        </form>
+      </section>
+
+      <!-- 2. lobby -->
+      <section id="lobby-view" class="card hidden">
+        <p class="muted">Players join at <strong>/player.html</strong> with this PIN</p>
+        <div id="pin" class="pin"></div>
+        <p id="lobby-meta" class="muted"></p>
+        <h3>Players (<span id="player-count">0</span>)</h3>
+        <ul id="lobby-list" class="chips"></ul>
+        <button id="start-btn" class="btn green big" disabled>START GAME</button>
+      </section>
+
+      <!-- 3. game -->
+      <section id="game-view" class="hidden">
+        <div class="card">
+          <div class="q-top">
+            <span id="q-count" class="muted"></span>
+            <span id="answered" class="muted"></span>
+            <span id="timer" class="timer">15</span>
+          </div>
+          <div class="bar"><div id="bar-fill" class="bar-fill"></div></div>
+          <h2 id="q-text" class="q-text"></h2>
+          <div id="q-options" class="options"></div>
+          <p id="explanation" class="explanation hidden"></p>
+        </div>
+
+        <div class="card">
+          <h3>Leaderboard</h3>
+          <ol id="leaderboard" class="board"></ol>
+        </div>
+      </section>
+
+      <!-- 4. final -->
+      <section id="final-view" class="card hidden">
+        <h2>Winner</h2>
+        <div id="winner" class="winner"></div>
+        <ol id="final-board" class="board"></ol>
+        <a class="btn blue" href="host.html">NEW QUIZ</a>
+      </section>
+    </main>
+  </body>
+</html>

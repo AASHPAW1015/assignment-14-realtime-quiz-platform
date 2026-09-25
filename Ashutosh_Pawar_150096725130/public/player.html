@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Quiz Player</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body data-page="player">
+    <header>
+      <h1 id="player-title">Quiz Player</h1>
+      <span id="score-chip" class="chip hidden">0 pts</span>
+      <span id="status" class="status offline">connecting...</span>
+    </header>
+
+    <main>
+      <!-- 1. join -->
+      <section id="join-view" class="card narrow">
+        <h2>Join a quiz</h2>
+        <form id="join-form" class="stack">
+          <label for="pin-input">Game PIN</label>
+          <input id="pin-input" inputmode="numeric" maxlength="4" placeholder="8421" required />
+          <label for="player-name">Your name</label>
+          <input id="player-name" maxlength="20" placeholder="Karan" required />
+          <button class="btn green" type="submit">JOIN</button>
+        </form>
+      </section>
+
+      <!-- 2. waiting / feedback screen -->
+      <section id="wait-view" class="card narrow center-text hidden">
+        <h2 id="wait-title">You're in!</h2>
+        <p id="wait-text" class="muted">Waiting for the host to start...</p>
+        <ul id="player-lobby" class="chips"></ul>
+      </section>
+
+      <!-- 3. answer pad -->
+      <section id="answer-view" class="hidden">
+        <div class="q-top">
+          <span id="p-count" class="muted"></span>
+          <span id="p-timer" class="timer">15</span>
+        </div>
+        <div class="bar"><div id="p-bar-fill" class="bar-fill"></div></div>
+        <h2 id="p-question" class="q-text"></h2>
+        <div id="pad" class="pad"></div>
+      </section>
+
+      <!-- 4. final -->
+      <section id="p-final-view" class="card narrow center-text hidden">
+        <h2 id="p-final-title"></h2>
+        <p id="p-final-text" class="muted"></p>
+        <ol id="p-final-board" class="board"></ol>
+        <a class="btn green" href="player.html">PLAY AGAIN</a>
+      </section>
+    </main>
+  </body>
+</html>
